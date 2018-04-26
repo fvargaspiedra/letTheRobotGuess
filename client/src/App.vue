@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1>Let the Robot Decide!</h1>
+      <h1>🤖 Let the Robot Guess! 🤖</h1>
     </div>
     <router-view/>
   </div>
