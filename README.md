@@ -3,9 +3,11 @@ Web-based game prototype. It's a pictionary where the machine is the one guessin
 
 ## Installation
 TBD
+
 ## Usage
 TBD
-##Resources and credits
+
+##Resources
 This project used the following open code:
 * To train the model: https://github.com/tensorflow/models.git
 * To convert npy files to images: https://github.com/C-Aniruddh/RapidDraw/blob/in-dev/processing/process_all.py
