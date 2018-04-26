@@ -4,7 +4,7 @@ import sys
 from PIL import Image
 import PIL.ImageOps
 
-number_images = 2500; # Number of images in each category
+number_images = 300; # Number of images in each category
 npy_dir = './raw/'
 out_dir = './out/'
 npy_files = [f for f in os.listdir(npy_dir) if os.path.isfile(os.path.join(npy_dir, f))]

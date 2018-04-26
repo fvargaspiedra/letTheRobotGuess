@@ -26,8 +26,7 @@ def classify():
         # im2, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         # print(len(contours))
         cv2.imwrite('image.png', thresh)
-        test_image('image.png')
-        return 'Image received'
+        return "{\"guess\": \"" + test_image('image.png').lower() + "\"}"
 
 def test_image(image_name):
     image_data = tf.gfile.FastGFile(image_name, 'rb').read()
@@ -62,11 +61,24 @@ def test_image(image_name):
     # sortierung; circle -> 0, plus -> 1, square -> 2, triangle -> 3; array return bsp [3 1 2 0] -> sortiert nach groesster uebereinstimmmung
 
     # output
-        for node_id in top_k:
-            human_string = label_lines[node_id]
-            score = predictions[0][node_id]
-            print('%s (score = %.5f)' % (human_string, score), file=sys.stdout)
+        # for node_id in top_k:
+        #     human_string = label_lines[node_id]
+        #     score = predictions[0][node_id]
+        #     print('%s (score = %.5f)' % (human_string, score), file=sys.stdout)
 
+        return str(label_lines[top_k[0]])
+
+@app.route('/getLabels', methods=['GET'])
+def getLabels():
+    if request.method == 'GET':
+        lines = []
+        with open("../tf_files/retrained_labels.txt") as file:
+            for line in file:
+                line = line.strip()
+                lines.append(line)
+    print(lines, file=sys.stdout)
+    linesLower = [item.lower() for item in lines]
+    return json.dumps(linesLower)
 
 if __name__ == '__main__':
     app.debug = True
