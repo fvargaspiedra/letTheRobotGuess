@@ -68,14 +68,14 @@ export default {
         console.log(error)
       })
     },
-    play() {
+    play () {
       axios.get('http://localhost:5000/getLabels').then((response) => {
         console.log(response)
         this.categories = response.data
         this.state = 'gameStarted'
         this.selectedCategory = this.categories[Math.floor(Math.random() * this.categories.length)]
         console.log(this.selectedCategory)
-      });
+      })
     }
   }
 }
