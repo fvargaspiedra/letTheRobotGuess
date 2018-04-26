@@ -26,7 +26,8 @@ def classify():
         # im2, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         # print(len(contours))
         cv2.imwrite('image.png', thresh)
-        return "{\"guess\": \"" + test_image('image.png').lower() + "\"}"
+        guess, accuracy = test_image('image.png')
+        return "{\"guess\": \"" + guess.lower() + "\", \"accuracy\": \"" + accuracy.lower() + "\" }"
 
 def test_image(image_name):
     image_data = tf.gfile.FastGFile(image_name, 'rb').read()
@@ -66,7 +67,7 @@ def test_image(image_name):
         #     score = predictions[0][node_id]
         #     print('%s (score = %.5f)' % (human_string, score), file=sys.stdout)
 
-        return str(label_lines[top_k[0]])
+        return str(label_lines[top_k[0]]), str(predictions[0][top_k[0]])
 
 @app.route('/getLabels', methods=['GET'])
 def getLabels():
