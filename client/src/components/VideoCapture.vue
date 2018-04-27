@@ -127,6 +127,10 @@ button {
     margin-top: 0;
   }
 }
+.messages__draw {
+  font-size: 34px;
+  font-weight: bold;
+}
 .messages__guess {
   margin-bottom: 10px;
 }
