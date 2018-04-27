@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import config from '../config'
 import axios from 'axios'
 
 export default {
@@ -67,7 +68,7 @@ export default {
       this.canvas.getContext('2d').drawImage(this.video, 0, 0, 640, 480)
       const image = this.canvas.toDataURL('image/png')
       this.guessState = 'imageSent'
-      axios.post('http://localhost:5000/classify', {
+      axios.post(config.apiUrl + '/classify', {
         image: image
       }).then((response) => {
         this.guessState = 'guessReceived'
@@ -81,7 +82,7 @@ export default {
       })
     },
     play () {
-      axios.get('http://localhost:5000/getLabels').then((response) => {
+      axios.get(config.apiUrl + '/getLabels').then((response) => {
         console.log(response)
         this.categories = response.data
         this.gameState = 'gameStarted'
