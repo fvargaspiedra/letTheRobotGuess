@@ -1,0 +1,5 @@
+banana
+basketball
+cloud
+telephone
+triangle
